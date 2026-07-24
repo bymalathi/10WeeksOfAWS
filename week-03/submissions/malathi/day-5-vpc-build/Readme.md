@@ -236,12 +236,12 @@ Associated with private subnets.
 
 # Validation Completed
 
-✅ VPC created successfully
-✅ Four subnets created across two AZs
-✅ Public subnet internet routing verified
-✅ Private subnet isolation verified
-✅ Route table associations verified
-✅ VPC Resource Map checked
+✅ VPC created successfully  
+✅ Four subnets created across two AZs  
+✅ Public subnet internet routing verified  
+✅ Private subnet isolation verified  
+✅ Route table associations verified  
+✅ VPC Resource Map checked  
 
 ---
 
@@ -249,31 +249,43 @@ Associated with private subnets.
 
 ### 1. VPC Created
 
-![VPC Created](screenshots/01_VPC_Created.png)
+<img width="2231" height="990" alt="image" src="https://github.com/user-attachments/assets/86a8ab47-585b-40bd-b2d3-9b2816d1d180" />
+
 
 ### 2. Subnets Created
 
-![Subnets Created](screenshots/02_Subnets_Created.png)
+<img width="2545" height="462" alt="image" src="https://github.com/user-attachments/assets/6d11cbf4-8257-423d-b82f-cbb0907a6ad5" />
+
 
 ### 3. Internet Gateway Attached
 
-![Internet Gateway](screenshots/03_Internet_Gateway_Attached.png)
+<img width="2537" height="677" alt="image" src="https://github.com/user-attachments/assets/0febe2b7-27df-4cf1-829e-690cd8bce17c" />
+
 
 ### 4. Main Route Table
 
-![Main Route Table](screenshots/04_Main_Route_Table.png)
+<img width="2225" height="651" alt="image" src="https://github.com/user-attachments/assets/c825bee6-44bd-43bd-b644-48d8c590b09e" />
+
 
 ### 5. Public Route Table
 
-![Public Route Table](screenshots/05_Public_Route_Table.png)
+<img width="2542" height="862" alt="image" src="https://github.com/user-attachments/assets/f867e70c-a384-46b4-bd75-e5907d85abd1" />
+
 
 ### 6. Private Route Table
 
-![Private Route Table](screenshots/06_Private_Route_Table.png)
+<img width="2530" height="762" alt="image" src="https://github.com/user-attachments/assets/dbc9f9c6-a3a7-4819-8145-3c2e141a6713" />
+<img width="2490" height="632" alt="image" src="https://github.com/user-attachments/assets/eb1e9459-5814-4d86-91cc-b29168f5ca02" />
+
+<img width="2502" height="927" alt="image" src="https://github.com/user-attachments/assets/ad7d72e7-07ac-4264-8636-bf37b45ffda0" />
+<img width="2520" height="757" alt="image" src="https://github.com/user-attachments/assets/760ac900-1768-4818-97ee-ea32ef617636" />
+
+
 
 ### 7. VPC Resource Map
 
-![Resource Map](screenshots/07_AWS_VPC_Resource_Map.png)
+<img width="2180" height="755" alt="image" src="https://github.com/user-attachments/assets/6132fc53-0423-4e4c-8d5a-f8507b889d07" />
+
 
 ---
 
