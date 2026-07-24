@@ -9784,4 +9784,199 @@ Before cleanup, take screenshots of:
 3. Flow Log ACCEPT
 4. Flow Log REJECT
 
-These will make excellent proof for your AWS portfolio. 👍
+Yes. Since you've completed **Day 6**, here's the safest cleanup order. This avoids dependency errors (for example, you can't delete a VPC while endpoints or ENIs still exist).
+
+---
+
+# Step 1: Terminate EC2 Instances
+
+Go to:
+
+**EC2 → Instances**
+
+Terminate:
+
+* ✅ `cloudadhar-day6-web-ec2`
+* ✅ `cloudadhar-day6-private-ec2`
+
+Wait until both show **Terminated**.
+
+---
+
+# Step 2: Delete VPC Endpoints
+
+Go to:
+
+**VPC → Endpoints**
+
+Delete:
+
+* ✅ `cloudadhar-day6-ec2-endpoint` (Interface)
+* ✅ `cloudadhar-day6-s3-gateway-endpoint` (Gateway)
+
+Wait until they disappear.
+
+---
+
+# Step 3: Delete Flow Logs
+
+Go to:
+
+**VPC → Your VPC → Flow logs**
+
+Delete:
+
+* ✅ `cloudadhar-day6-flow-logs`
+
+---
+
+# Step 4: Delete CloudWatch Log Group
+
+Go to:
+
+**CloudWatch → Logs → Log groups**
+
+Delete:
+
+* ✅ `/aws/vpc/flowlogs/cloudadhar-day6`
+
+---
+
+# Step 5: Delete NAT Gateway
+
+Go to:
+
+**VPC → NAT Gateways**
+
+Delete:
+
+* ✅ `cloudadhar-day6-nat-a`
+
+Wait until its status becomes **Deleted** (this can take several minutes).
+
+---
+
+# Step 6: Release Elastic IP
+
+Go to:
+
+**EC2 → Elastic IPs**
+
+Select the Elastic IP used by the NAT Gateway.
+
+Choose:
+
+**Actions → Release Elastic IP addresses**
+
+Confirm.
+
+---
+
+# Step 7: Delete Network ACL
+
+Go to:
+
+**VPC → Network ACLs**
+
+If your custom NACL is still associated with subnets:
+
+1. Select the custom NACL.
+2. Choose **Subnet associations**.
+3. Replace it with the **default NACL**.
+4. Save.
+
+Then delete:
+
+* ✅ `cloudadhar-day6-nacl`
+
+---
+
+# Step 8: Delete Security Groups
+
+Go to:
+
+**EC2 → Security Groups**
+
+Delete (after the instances and endpoints are gone):
+
+* ✅ `cloudadhar-day6-web-sg`
+* ✅ `cloudadhar-day6-private-sg`
+* ✅ `cloudadhar-day6-endpoint-sg`
+
+Leave the **default** security group.
+
+---
+
+# Step 9: Delete Route Tables
+
+Go to:
+
+**VPC → Route Tables**
+
+Delete custom route tables:
+
+* ✅ `cloudadhar-public-rt`
+* ✅ `cloudadhar-private-rt`
+
+Don't delete the **main** route table yet.
+
+---
+
+# Step 10: Detach & Delete Internet Gateway
+
+Go to:
+
+**VPC → Internet Gateways**
+
+Select:
+
+* ✅ `cloudadhar-day5-igw`
+
+Choose:
+
+1. **Detach**
+2. **Delete**
+
+---
+
+# Step 11: Delete Subnets
+
+Go to:
+
+**VPC → Subnets**
+
+Delete:
+
+* ✅ `cloudadhar-public-a`
+* ✅ `cloudadhar-public-b`
+* ✅ `cloudadhar-private-a`
+* ✅ `cloudadhar-private-b`
+
+---
+
+# Step 12: Delete the VPC
+
+Go to:
+
+**VPC → Your VPCs**
+
+Delete:
+
+* ✅ `cloudadhar-day5-vpc`
+
+---
+
+## If the VPC won't delete
+
+It's almost always because something is still attached. Check for:
+
+* Interface endpoint ENIs
+* NAT Gateway (still deleting)
+* Elastic IP not released
+* Security groups
+* Route tables
+* Flow logs
+* Internet Gateway
+* Network ACL associations
+
+
