@@ -19,7 +19,8 @@ Malathi Shetty
 
 # Architecture
 
-![VPC Architecture](diagrams/week-03-vpc-two-az.drawio.png)
+<img width="1370" height="1148" alt="image" src="https://github.com/user-attachments/assets/e5714e17-2a17-404a-87fc-a099cf6ba1b1" />
+
 
 ---
 
