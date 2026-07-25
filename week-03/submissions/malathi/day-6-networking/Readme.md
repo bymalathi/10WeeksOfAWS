@@ -23,7 +23,7 @@ Malathi Shetty
 
 # Architecture
 
-![Day 6 Extended VPC](diagrams/week-03-day6-extend-vpc.png)
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/ec8899d1-cda4-4d5e-874f-ea9a7b7f0534" />
 
 ---
 
