@@ -1,0 +1,16 @@
+CloudAdhar x TrainWithShubham
+AWS Zero To Hero - Day 12
+Demo: Amazon S3 multipart upload
+
+Multipart upload divides a large object into independently uploaded parts.
+
+Key observations:
+- Failed parts can be retried without restarting the entire upload.
+- Parts can be uploaded concurrently.
+- All uploaded parts must be completed or explicitly aborted.
+- Incomplete parts can create storage charges.
+- A lifecycle rule can abort incomplete multipart uploads after a chosen number of days.
+
+This is a small conceptual sample and does not itself force multipart behavior.
+
+Synthetic training data only.

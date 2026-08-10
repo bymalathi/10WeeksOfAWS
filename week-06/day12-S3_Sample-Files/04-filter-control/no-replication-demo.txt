@@ -1,0 +1,16 @@
+CloudAdhar x TrainWithShubham
+AWS Zero To Hero - Day 12
+Demo: Replication prefix filter control
+
+Required source key: other/no-replication-demo.txt
+
+This object does not use the srr/ or crr/ prefix.
+
+Expected result:
+- The object remains in the source bucket.
+- It does not appear in the SRR destination.
+- It does not appear in the CRR destination.
+
+This proves that the replication rules are limited by their configured prefixes.
+
+Synthetic training data only.

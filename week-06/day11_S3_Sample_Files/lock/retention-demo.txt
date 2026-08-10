@@ -1,0 +1,9 @@
+CloudAdhar x TrainWithShubham
+AWS Zero To Hero — Day 11 Object Lock Lab
+
+Classification: Synthetic Training Record
+Protection exercise: Object Lock Legal Hold
+
+Expected behavior:
+1. Deletion fails while Legal Hold is On.
+2. Deletion succeeds after Legal Hold is Off, provided no retention period remains.

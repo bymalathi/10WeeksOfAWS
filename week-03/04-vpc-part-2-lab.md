@@ -1,157 +1,72 @@
-# Day 6 Practical - NAT, NACL, Endpoints, and Flow Logs
+# Day 6 Challenge - Secure, Connect, and Observe Two VPCs
 
-Goal: Extend the Day 5 VPC using a short cost-safe build and validate each
-network decision.
+## Objective
 
-## Before You Start
+Extend VPC-A with controlled private egress and observability, build VPC-B as a peering target, and prove private connectivity and private S3 access without exposing sensitive information.
 
-- Confirm `cloudadhar-day5-vpc` still exists.
-- Verify account and Region using `aws sts get-caller-identity`.
-- Review [06-cleanup.md](./06-cleanup.md) before creating billable resources.
-- Set a timer. NAT Gateway and Interface Endpoint are hourly billable.
+## Use
 
-## Part 1 - Create NAT-A
+- VPC-A `10.10.0.0/20` with private EC2 in `10.10.12.0/24`
+- Public NAT Gateway and Elastic IP
+- Session Manager and a read-only EC2 role
+- VPC Flow Logs delivered to CloudWatch Logs
+- Security Groups and a custom Network ACL
+- VPC-B `10.20.0.0/20` with an nginx target in `10.20.1.0/24`
+- VPC Peering and routes in both directions
+- S3 Gateway Endpoint associated with VPC-A's private route table
+- Optional one-subnet Interface Endpoint
+- Transit Gateway comparison only
 
-1. Open VPC -> NAT Gateways -> Create NAT Gateway.
-2. Name it `cloudadhar-day6-nat-a`.
-3. Select Public-A and public connectivity.
-4. Allocate one Elastic IP.
-5. Create the NAT Gateway and wait for `Available`.
-6. Create `cloudadhar-private-a-rt` and associate Private-A.
-7. Add `0.0.0.0/0 -> cloudadhar-day6-nat-a`.
-8. Do not add a NAT route to Private-B in the learner lab.
+## Constraints
 
-Validate the complete path:
+- The private EC2 instance must have no public IPv4 and no inbound SSH rule.
+- Use one NAT Gateway for the cost-safe learner build; document the resilient same-AZ NAT-per-AZ production extension.
+- Test Security Group and NACL rejection independently so the evidence identifies the changed control.
+- Configure required NACL request and ephemeral return paths before subnet association.
+- VPC Peering must use non-overlapping CIDRs, routes in both directions, and least-privilege Security Group access.
+- Test peering with VPC-B's private IP, not its public IP.
+- Transit Gateway must not be created for this two-VPC challenge.
+- The optional Interface Endpoint must be limited to one subnet and removed immediately after validation.
+- Discover all dynamic IDs, IPs, and AMIs at runtime.
 
-```text
-Private EC2 -> Private-A route table -> NAT-A in Public-A
-            -> Public route table -> IGW -> internet
-```
+## Required Proof
 
-## Part 2 - Validate a Private EC2 Instance
+### Private egress
 
-1. Launch a small Amazon Linux 2023 instance in Private-A.
-2. Disable public IPv4 assignment.
-3. Attach a role that supports Session Manager and required read-only commands.
-4. Use a Security Group with no inbound rule and required outbound access.
-5. Connect through Session Manager after NAT-A is available.
-6. Run:
+- VPC-A private route to NAT Gateway
+- Private EC2 with no public IPv4 and Session Manager connectivity
+- Successful outbound HTTPS and NAT public-IP observation
+- Explanation of the one-NAT lab versus resilient production design
 
-```bash
-curl -I https://aws.amazon.com
-aws sts get-caller-identity
-```
+### Security and observability
 
-The instance has outbound access but no public IPv4 and accepts no direct
-inbound internet connection.
+- One controlled Security Group `REJECT` record
+- NACL lower-numbered explicit deny and recovery observation
+- NACL stateless return-path failure and recovery observation
+- At least one sanitized Flow Log `ACCEPT` and one `REJECT`, with field meanings
+- Explanation that `ACCEPT` does not prove the application is healthy
 
-Production extension: deploy NAT-B in Public-B, create a separate Private-B
-route table, and route Private-B to NAT-B. Do not route both AZs through NAT-A
-in the final resilient design.
+### Private VPC connectivity
 
-## Part 3 - Compare SG and NACL Behavior
+- VPC-A and VPC-B CIDR and route evidence
+- Active peering relationship
+- VPC-B Security Group allowing HTTP only from VPC-A's CIDR
+- Private-IP HTTP `200` result from VPC-A private EC2 to VPC-B web EC2
+- Explanation of why VPC Peering is non-transitive
 
-1. Launch a small web EC2 instance in Public-A with nginx or httpd user data.
-2. Create a Security Group allowing HTTP 80 for the demo.
-3. If SSH is used, restrict it to your IP; prefer Session Manager.
-4. Confirm the web page works.
-5. Create a custom NACL for Public-A.
-6. Add inbound HTTP plus required return rules.
-7. Add outbound HTTP/HTTPS plus ephemeral return rules.
-8. Associate the custom NACL with Public-A.
-9. Add a lower-numbered deny for TCP 80 from your public IP `/32`.
-10. Confirm failure, remove the temporary deny, and confirm recovery.
+### Private S3 access
 
-Rule 90 is evaluated before rule 100. A NACL stops at the first matching rule.
+- S3 Gateway Endpoint and AWS-managed prefix-list route
+- Successful read from a private test object
+- Expected `AccessDenied` for a write attempted by the read-only EC2 role
+- Gateway versus Interface Endpoint decision table
 
-## Part 4 - Create an S3 Gateway Endpoint
+## Failure Investigation
 
-1. Open VPC -> Endpoints -> Create Endpoint.
-2. Select AWS services and the regional S3 **Gateway** endpoint.
-3. Select `cloudadhar-day5-vpc`.
-4. Select `cloudadhar-private-a-rt`.
-5. Use Full Access for the initial connectivity test, then review a scoped
-   endpoint policy.
-6. Inspect the new S3 prefix-list route.
-7. From the private EC2 instance, run:
+Record at least one issue and the order used to investigate it: identity, resource state, subnet association, routes in both directions, Security Group, NACL, DNS, application listener, and logs.
 
-```bash
-aws s3api list-buckets
-```
+## Cleanup
 
-IAM must still allow the S3 action. The endpoint supplies a private path, not
-permission.
+Complete [06-cleanup.md](./06-cleanup.md) immediately after capturing sanitized evidence.
 
-## Part 5 - Create a Short-Lived Interface Endpoint
-
-1. Create an Interface Endpoint for a supported API such as EC2.
-2. Select Private-A only for the cost-safe lab.
-3. Enable private DNS.
-4. Attach an endpoint Security Group allowing TCP 443 from the private
-   instance's Security Group.
-5. Inspect the endpoint ENI and DNS names.
-6. Run:
-
-```bash
-nslookup ec2.ap-south-1.amazonaws.com
-```
-
-7. Delete the Interface Endpoint immediately after validation.
-
-## Part 6 - Enable Flow Logs
-
-1. Select the VPC -> Flow Logs -> Create Flow Log.
-2. Choose traffic type **All**.
-3. Send records to a dedicated CloudWatch Logs group.
-4. Create or select the required delivery IAM role.
-5. Generate successful web traffic.
-6. Repeat the temporary NACL deny to generate rejected traffic.
-7. Run the REJECT query from
-   [03-vpc-security-and-connectivity.md](./03-vpc-security-and-connectivity.md).
-8. Identify interface, source, destination, ports, protocol, and action.
-
-## CLI Starter
-
-```bash
-export REGION=ap-south-1
-aws sts get-caller-identity
-
-VPC_ID=$(aws ec2 describe-vpcs --region "$REGION" \
-  --filters "Name=tag:Name,Values=cloudadhar-day5-vpc" \
-  --query 'Vpcs[0].VpcId' --output text)
-
-PUBLIC_A_SUBNET_ID=$(aws ec2 describe-subnets --region "$REGION" \
-  --filters "Name=vpc-id,Values=$VPC_ID" \
-  "Name=tag:Name,Values=cloudadhar-public-a" \
-  --query 'Subnets[0].SubnetId' --output text)
-
-PRIVATE_A_SUBNET_ID=$(aws ec2 describe-subnets --region "$REGION" \
-  --filters "Name=vpc-id,Values=$VPC_ID" \
-  "Name=tag:Name,Values=cloudadhar-private-a" \
-  --query 'Subnets[0].SubnetId' --output text)
-
-EIP_ALLOC_ID=$(aws ec2 allocate-address --region "$REGION" \
-  --domain vpc --query 'AllocationId' --output text)
-
-NAT_A_ID=$(aws ec2 create-nat-gateway --region "$REGION" \
-  --subnet-id "$PUBLIC_A_SUBNET_ID" --allocation-id "$EIP_ALLOC_ID" \
-  --tag-specifications \
-  'ResourceType=natgateway,Tags=[{Key=Name,Value=cloudadhar-day6-nat-a}]' \
-  --query 'NatGateway.NatGatewayId' --output text)
-
-aws ec2 wait nat-gateway-available --region "$REGION" \
-  --nat-gateway-ids "$NAT_A_ID"
-```
-
-## Validation Checklist
-
-- Private-A has its intended route-table association.
-- NAT-A is available and Public-A has an IGW route.
-- Private EC2 has no public IPv4 and can initiate outbound access.
-- SG and NACL rules allow the intended flow and return traffic.
-- The temporary lower-numbered NACL deny blocks HTTP.
-- S3 Gateway Endpoint adds a prefix-list route.
-- Interface Endpoint uses a private ENI, private DNS, and restrictive SG.
-- Flow Logs show expected `ACCEPT` and `REJECT` records.
-
-Complete [06-cleanup.md](./06-cleanup.md) immediately.
+The submission must explain design choices, results, and troubleshooting. Do not reproduce the Student Guide's implementation steps.

@@ -1,0 +1,6 @@
+CloudAdhar x TrainWithShubham
+AWS Zero To Hero — Day 11 Versioning Lab
+
+Version: 1
+Status: Initial training content
+Message: This is the first version of versions/version-demo.txt.

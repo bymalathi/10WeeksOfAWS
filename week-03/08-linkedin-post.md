@@ -37,6 +37,7 @@ Write about:
 - The private EC2-to-NAT-to-IGW path
 - Stateful Security Groups versus stateless NACLs
 - Why S3 Gateway Endpoint can avoid the NAT path
+- How private VPC Peering was validated
 - One `ACCEPT` or `REJECT` Flow Log insight
 - Why a production design uses NAT per AZ
 
@@ -49,6 +50,9 @@ Today I extended my VPC with private-subnet egress and layered controls.
 
 NAT gives private IPv4 workloads outbound internet access. A VPC Endpoint gives
 a private path to a supported service. They solve different problems.
+
+I also validated direct private connectivity between two non-overlapping VPCs
+and documented the routes and security controls required on both sides.
 
 My validation: [write what worked]
 My troubleshooting evidence: [write what Flow Logs showed]

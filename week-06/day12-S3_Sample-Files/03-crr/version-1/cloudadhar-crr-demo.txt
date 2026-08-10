@@ -1,0 +1,15 @@
+CloudAdhar x TrainWithShubham
+AWS Zero To Hero - Day 12
+Demo: Amazon S3 Cross-Region Replication
+Version: 1
+
+Source Region: Asia Pacific (Mumbai)
+Destination Region: Asia Pacific (Tokyo)
+Required source key: crr/cloudadhar-crr-demo.txt
+
+Expected result:
+- Replication status changes from Pending to Completed.
+- This version appears in the Tokyo CRR destination bucket.
+- It does not match the SRR rule that uses the srr/ prefix.
+
+Synthetic training data only.

@@ -1,0 +1,18 @@
+CloudAdhar x TrainWithShubham
+AWS Zero To Hero - Day 12
+Demo: Amazon S3 Cross-Region Replication
+Version: 2
+
+Source Region: Asia Pacific (Mumbai)
+Destination Region: Asia Pacific (Tokyo)
+Required source key: crr/cloudadhar-crr-demo.txt
+
+This file intentionally has the same filename and S3 key as Version 1.
+Upload it after Version 1 to demonstrate S3 Versioning and CRR of later versions.
+
+Expected result:
+- A new Version ID is created in the source bucket.
+- The new version is replicated to the Tokyo CRR destination.
+- Show versions displays both Version 1 and Version 2.
+
+Synthetic training data only.

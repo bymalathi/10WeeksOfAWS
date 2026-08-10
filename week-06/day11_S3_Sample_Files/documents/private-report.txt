@@ -1,0 +1,8 @@
+CloudAdhar x TrainWithShubham
+AWS Zero To Hero — Day 11
+Document: Private Training Report
+Classification: Training-Only
+
+This private report contains synthetic data.
+Expected normal Object URL result: AccessDenied.
+Expected presigned URL result: temporary authorized access.

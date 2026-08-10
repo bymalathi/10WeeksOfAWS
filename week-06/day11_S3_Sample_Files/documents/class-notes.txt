@@ -1,0 +1,6 @@
+CloudAdhar x TrainWithShubham
+AWS Zero To Hero — Day 11
+Topic: Amazon S3 Foundations, Security and Cost
+
+This is a synthetic class-notes object for upload, metadata and copy demonstrations.
+No customer, learner or production data is stored in this file.

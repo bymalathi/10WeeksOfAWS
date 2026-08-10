@@ -1,0 +1,7 @@
+CloudAdhar x TrainWithShubham
+AWS Zero To Hero — Day 11 Presigned URL Lab
+
+This is a private synthetic object.
+A normal Object URL should return AccessDenied.
+A valid short-lived presigned GET URL should allow temporary access.
+Treat the complete presigned URL as a temporary bearer credential.

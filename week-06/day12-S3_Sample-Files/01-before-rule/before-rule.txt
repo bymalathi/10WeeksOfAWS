@@ -1,0 +1,12 @@
+CloudAdhar x TrainWithShubham
+AWS Zero To Hero - Day 12
+File: before-rule.txt
+
+This synthetic object was uploaded before the S3 replication rules were created.
+
+Expected result:
+- It remains in the source bucket.
+- It does not automatically appear in the SRR or CRR destination.
+- Existing objects require S3 Batch Replication when they must be copied later.
+
+No customer, learner or production data is stored in this file.

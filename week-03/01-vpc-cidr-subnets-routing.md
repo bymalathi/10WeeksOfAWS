@@ -14,7 +14,7 @@ Goal: Understand the network building blocks before creating resources.
 |---|---|
 | VPC | A logically isolated virtual network in one AWS Region |
 | Subnet | A VPC CIDR range that belongs to one Availability Zone |
-| CIDR | Address range plus network prefix, such as `10.10.0.0/16` |
+| CIDR | Address range plus network prefix, such as `10.10.0.0/20` |
 | Route table | Destination-and-target rules that select a traffic path |
 | Local route | Automatic route for communication inside the VPC CIDR |
 | Internet Gateway | Highly available VPC gateway targeted by internet routes |
@@ -68,7 +68,7 @@ optional visual planning and verification tool.
 
 For this lab:
 
-1. Enter the VPC CIDR `10.10.0.0/16`.
+1. Enter the VPC CIDR `10.10.0.0/20`.
 2. Plan four `/24` subnets.
 3. Compare the generated ranges with the Week 3 IP plan below.
 4. Confirm that every subnet is inside the VPC CIDR.
@@ -82,11 +82,14 @@ each subnet size.
 
 | Resource | CIDR | Scope | Purpose |
 |---|---|---|---|
-| VPC | `10.10.0.0/16` | Region | Overall network boundary |
+| VPC-A | `10.10.0.0/20` | Region | Primary network boundary |
 | Public-A | `10.10.1.0/24` | AZ A | Public tier |
 | Public-B | `10.10.2.0/24` | AZ B | Public tier |
-| Private-A | `10.10.11.0/24` | AZ A | Private tier |
-| Private-B | `10.10.12.0/24` | AZ B | Private tier |
+| Private-A | `10.10.12.0/24` | AZ A | Private EC2 tier |
+| Private-B | `10.10.11.0/24` | AZ B | Private tier |
+| VPC-B | `10.20.0.0/20` | Region | Non-overlapping peering target |
+| VPC-B Public-A | `10.20.1.0/24` | AZ A | Web validation target |
+| VPC-B Private-A | `10.20.11.0/24` | AZ A | Optional private tier |
 
 Each `/24` subnet has 256 total and 251 usable IPv4 addresses.
 
@@ -111,7 +114,7 @@ destination wins. IPv4 and IPv6 routes are evaluated separately.
 
 Examples:
 
-- `10.10.0.0/16 -> local` is more specific than `0.0.0.0/0 -> IGW` for VPC
+- `10.10.0.0/20 -> local` is more specific than `0.0.0.0/0 -> IGW` for VPC
   addresses.
 - `0.0.0.0/0` means all IPv4 destinations.
 - `::/0` means all IPv6 destinations.

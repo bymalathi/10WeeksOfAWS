@@ -1,7 +1,11 @@
-# Day 6 - NAT, Network Security, Endpoints, and Connectivity
+# Day 6 - NAT, Network Security, Endpoints, Peering, and Flow Logs
 
 Goal: Understand controlled egress, layered filtering, private service access,
 multi-VPC connectivity, and network evidence.
+
+## Updated Lab Context
+
+Day 6 extends VPC-A `10.10.0.0/20` and connects it to VPC-B `10.20.0.0/20`. The CIDRs must not overlap. Validate peering with private IP addresses and routes in both directions.
 
 ## NAT Gateway vs NAT Instance
 
@@ -136,3 +140,5 @@ prove the application listener or process worked.
 6. Direct two-VPC connection: Peering.
 7. Transitive multi-network hub: Transit Gateway.
 8. Network metadata evidence: VPC Flow Logs.
+
+An S3 Gateway Endpoint changes the network path but does not grant permission. The Week 3 challenge requires a successful read and an expected denied write from the read-only private EC2 role.

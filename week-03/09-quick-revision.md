@@ -22,6 +22,9 @@ self-check and interview-style revision.
 | Direct two-VPC link? | VPC Peering |
 | Transitive network hub? | Transit Gateway |
 | Network metadata evidence? | VPC Flow Logs |
+| Does an endpoint grant IAM access? | No; IAM and resource policies still apply |
+| Can a NAT Gateway use a Security Group? | No |
+| Can a NAT Instance use a Security Group? | Yes |
 
 ## Scenario Review
 
@@ -69,6 +72,12 @@ A Flow Log says `ACCEPT`, but the application request fails.
 Check the listener, process, host firewall, DNS, TLS, and application logs. Flow
 Logs show network metadata and control decisions, not payload or application
 health.
+
+### Scenario 7
+
+VPC Peering is active, but a private HTTP request times out.
+
+Check non-overlapping CIDRs, routes in both directions, the actual subnet route-table associations, the destination Security Group, both NACL directions, the nginx listener, and the private destination IP.
 
 ## Final Recap
 

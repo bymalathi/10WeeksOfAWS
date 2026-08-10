@@ -1,62 +1,41 @@
 # Week 3 Architecture Exercise
 
-Create an editable draw.io diagram showing both the learner build and the
-resilient production extension.
+Create an editable diagram showing the cost-safe learner build and label the resilient production extension separately.
 
-## Required Components
+## Required Boundaries and Components
 
-1. AWS Region boundary.
-2. VPC `10.10.0.0/16`.
-3. Two Availability Zone boundaries.
-4. Public-A `10.10.1.0/24` and Private-A `10.10.11.0/24`.
-5. Public-B `10.10.2.0/24` and Private-B `10.10.12.0/24`.
-6. Internet Gateway attached to the VPC.
-7. Public route table with `0.0.0.0/0 -> IGW`.
-8. NAT-A in Public-A and NAT-B in Public-B.
-9. Private-A default route to NAT-A.
-10. Private-B default route to NAT-B.
-11. S3 Gateway Endpoint connected through private route tables.
-12. One Interface Endpoint ENI in a private subnet with a Security Group.
-13. VPC Flow Logs publishing to CloudWatch Logs.
-14. Security Groups around workload ENIs and NACLs around subnets.
+- AWS Region and Availability Zone boundaries
+- VPC-A `10.10.0.0/20` with its four updated `/24` subnets
+- VPC-B `10.20.0.0/20` with public `10.20.1.0/24` and optional private `10.20.11.0/24`
+- Internet Gateways and public route tables
+- NAT-Gateway-A in VPC-A Public-A
+- VPC-A private EC2 without a public IPv4
+- VPC-B web EC2 and its least-privilege Security Group
+- VPC Peering connection and routes in both directions
+- S3 Gateway Endpoint and prefix-list route
+- Optional Interface Endpoint ENI and Security Group
+- VPC Flow Logs to CloudWatch Logs
+- Security Group boundaries and subnet NACL boundaries
+- Transit Gateway as a comparison callout only, not a deployed component
 
-## Route Labels
+## Traffic Flows to Draw
 
-```text
-Public-A/Public-B: 0.0.0.0/0 -> IGW
-Private-A:          0.0.0.0/0 -> NAT-A
-Private-B:          0.0.0.0/0 -> NAT-B
-Private routes:     S3 prefix list -> S3 Gateway Endpoint
-All route tables:   10.10.0.0/16 -> local
-```
+- VPC-A private EC2 -> NAT Gateway -> Internet Gateway -> internet
+- VPC-A private EC2 -> VPC Peering -> VPC-B private web address -> HTTP `200`
+- VPC-A private EC2 -> S3 Gateway Endpoint -> S3
+- Read-only EC2 role attempting and failing `PutObject`
+- Flow Log metadata path to CloudWatch Logs
 
-## Traffic Flows To Draw
+## Production Extension
 
-- Public web request and response through IGW.
-- Private-A outbound internet request through NAT-A and IGW.
-- Private-A S3 request through the Gateway Endpoint without NAT.
-- Private workload to Interface Endpoint ENI on TCP 443.
-- Flow Log metadata from the monitored ENI or subnet to CloudWatch Logs.
+Show NAT-B in VPC-A Public-B with same-AZ routing from Private-B. Clearly label it as the resilient production extension, not part of the one-NAT cost-safe learner build.
 
-## Decision Notes
+## Required Decision Notes
 
-Add these notes to the diagram:
+- Route tables select paths; Security Groups and NACLs filter traffic.
+- Security Groups are stateful; NACLs are stateless.
+- Peering requires non-overlapping CIDRs and is non-transitive.
+- Gateway Endpoints provide private S3/DynamoDB routing but do not replace IAM.
+- Transit Gateway is appropriate when centralized transitive connectivity justifies its cost and design.
 
-- A public subnet is defined by its route to the IGW.
-- A NAT Gateway must be in a public subnet for public IPv4 egress.
-- Same-AZ private-to-NAT routing avoids an unnecessary cross-AZ dependency.
-- SG is stateful; NACL is stateless.
-- Peering is non-transitive; Transit Gateway is a transitive hub.
-- Gateway Endpoint is the preferred private S3/DynamoDB path.
-
-## Output
-
-Save:
-
-```text
-diagrams/week-03-vpc-two-az.drawio
-diagrams/week-03-vpc-two-az.png
-```
-
-Do not include real account IDs, resource IDs, public IP addresses, or internal
-company network ranges in a public submission.
+Save an editable diagram and an exported image. Do not include account IDs, complete role ARNs, resource IDs, public IPs, or private organizational ranges.

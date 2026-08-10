@@ -1,0 +1,16 @@
+CloudAdhar x TrainWithShubham
+AWS Zero To Hero - Day 12
+S3 Replication Troubleshooting Checklist
+
+1. Confirm versioning is enabled on the source and destination buckets.
+2. Confirm the replication rule is enabled.
+3. Confirm the object key matches the configured prefix or tag filter.
+4. Confirm the object was uploaded after the rule became active.
+5. Check the source object's replication status.
+6. Confirm the replication IAM role can read the source and write to the destination.
+7. For SSE-KMS objects, verify source and destination KMS key permissions.
+8. Confirm the destination bucket and Region are correct.
+9. Remember that replication is asynchronous and can remain Pending temporarily.
+10. Use S3 Batch Replication for eligible pre-existing objects.
+
+Synthetic training data only.

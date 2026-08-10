@@ -1,0 +1,32 @@
+CloudAdhar x TrainWithShubham
+AWS Zero To Hero - Day 12
+Topic: File and hybrid storage service selection
+
+Amazon EFS
+- Shared, elastic NFS file storage for Linux workloads.
+
+Amazon FSx for Windows File Server
+- Managed Windows file storage with SMB and Microsoft integration.
+
+Amazon FSx for Lustre
+- High-performance parallel file system for HPC and data processing.
+
+Amazon FSx for NetApp ONTAP
+- Enterprise NAS features and NetApp-compatible workloads.
+
+Amazon FSx for OpenZFS
+- Managed ZFS-based file storage for Linux workloads.
+
+AWS Storage Gateway
+- Hybrid access that connects on-premises environments with AWS storage.
+
+AWS DataSync
+- Automated, accelerated online movement of files and objects.
+
+AWS Snow Family
+- Offline data migration and edge-computing scenarios.
+
+AWS Transfer Family
+- Managed SFTP, FTPS, FTP and AS2 access backed by S3 or EFS.
+
+Synthetic training data only.

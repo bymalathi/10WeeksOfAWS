@@ -1,0 +1,13 @@
+CloudAdhar x TrainWithShubham
+AWS Zero To Hero - Day 12
+Demo: Amazon S3 Transfer Acceleration
+
+Transfer Acceleration can route long-distance uploads through AWS edge locations and the AWS global network.
+
+Trainer discussion points:
+- The bucket name must not contain periods.
+- An accelerated endpoint is used instead of the normal regional endpoint.
+- Additional charges apply.
+- A small same-Region file does not provide a meaningful performance comparison.
+
+Synthetic training data only.
