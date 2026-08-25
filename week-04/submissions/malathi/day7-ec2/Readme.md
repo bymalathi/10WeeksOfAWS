@@ -503,63 +503,63 @@ All Day screenshots are stored under:
 
 ### IAM Role
 
-![](/screenshots/1-roles-iam-global.png)
+<img src="./screenshots/1-roles-iam-global.png" width="600">
 
-![](/screenshots/2-create-role-iam-global.png)
+<img src="./screenshots/2-create-role-iam-global.png" width="600">
 
-![](/screenshots/3-permissions.png)
+<img src="./screenshots/3-permissions.png" width="600">
 
-![](/screenshots/4-naming-the-role.png)
+<img src="./screenshots/4-naming-the-role.png" width="600">
 
-![](/screenshots/5-role-created.png)
+<img src="/screenshots/5-role-created.png" width="600">
 
 ### VPC
 
-![](/screenshots/6-1-create-vpcs-vpc-us-west-2.png)
+<img src="/screenshots/6-1-create-vpcs-vpc-us-west-2.png" width="600">
 
-![](/screenshots/6-2-create-vpcs-vpc-us-west-2.png)
+<img src="/screenshots/6-2-create-vpcs-vpc-us-west-2.png" width="600">
 
-![](/screenshots/11-vpcs-resource-map.png)
+<img src="/screenshots/11-vpcs-resource-map.png" width="600">
 
 ### Internet Gateway
 
-![](/screenshots/7-1-create-internet-gateway.png)
+<img src="/screenshots/7-1-create-internet-gateway.png" width="600">
 
-![](/screenshots/7-2-create-internet-gateway.png)
+<img src="/screenshots/7-2-create-internet-gateway.png" width="600">
 
-![](/screenshots/7-3-create-internet-gateway.png)
+<img src="/screenshots/7-3-create-internet-gateway.png" width="600">
 
-![](/screenshots/7-4-create-internet-gateway.png)
+<img src="/screenshots/7-4-create-internet-gateway.png" width="600">
 
 ### Subnets
 
-![](/screenshots/8-1-create-subnet.png)
+<img src="/screenshots/8-1-create-subnet.png" width="600">
 
-![](/screenshots/8-2-create-subnet.png)
+<img src="/screenshots/8-2-create-subnet.png" width="600">
 
-![](/screenshots/8-3-create-subnet.png)
+<img src="/screenshots/8-3-create-subnet.png" width="600">
 
-![](/screenshots/10-1-enable-public-ipv4-for-the-subnet.png)
+<img src="/screenshots/10-1-enable-public-ipv4-for-the-subnet.png" width="600">
 
-![](/screenshots/10-2-enable-public-ipv4-for-the-subnet.png)
+<img src="/screenshots/10-2-enable-public-ipv4-for-the-subnet.png" width="600">
 
 ### Route Table
 
-![](/screenshots/9-1-route-table.png)
+<img src="/screenshots/9-1-route-table.png" width="600">
 
-![](/screenshots/9-2-edit-route-table.png)
+<img src="/screenshots/9-2-edit-route-table.png" width="600">
 
-![](/screenshots/9-3-add-route-table.png)
+<img src="/screenshots/9-3-add-route-table.png" width="600">
 
-![](/screenshots/9-4-route-table.png)
+<img src="/screenshots/9-4-route-table.png" width="600">
 
 ### Security Groups
 
-![](/screenshots/12-1-securitygroups-ec2-us-west-2.png)
+<img src="/screenshots/12-1-securitygroups-ec2-us-west-2.png" width="600">
 
-![](/screenshots/12-2-securitygroups-ec2-us-west-2.png)
+<img src="/screenshots/12-2-securitygroups-ec2-us-west-2.png" width="600">
 
-![](/screenshots/12-3-security-groups-ec2-us-west-2.png)
+<img src="/screenshots/12-3-security-groups-ec2-us-west-2.png" width="600">
 
 ---
 
@@ -567,45 +567,45 @@ All Day screenshots are stored under:
 
 ### Launch EC2
 
-![](/screenshots/13-launch-an-instance-ec2-us-west-2.png)
+<img src="/screenshots/13-launch-an-instance-ec2-us-west-2.png" width="600">
 
 ### Builder EC2 Configuration
 
-![](/screenshots/14-1-builder_ec2_configuration.png)
+<img src="/screenshots/14-1-builder_ec2_configuration.png" width="600">
 
-![](/screenshots/14-2-builder_ec2_configuration.png)
+<img src="/screenshots/14-2-builder_ec2_configuration.png" width="600">
 
 ### Builder Validation
 
-![](/screenshots/15-1-check-builder-ec2.png)
+<img src="/screenshots/15-1-check-builder-ec2.png" width="600">
 
 ### Session Manager
 
-![](/screenshots/15-2-connect-using-session-manager.png)
+<img src="/screenshots/15-2-connect-using-session-manager.png" width="600">
 
-![](/screenshots/15-3-systems-manager-connect.png)
+<img src="/screenshots/15-3-systems-manager-connect.png" width="600">
 
-![](/screenshots/15-9-connect-session-manager.png)
+<img src="/screenshots/15-9-connect-session-manager.png" width="600">
 
 ### NGINX User Data Validation
 
-![](/screenshots/15-4-user-data-successfully-installed-and-started-nginx..png)
+<img src="/screenshots/15-4-user-data-successfully-installed-and-started-nginx..png" width="600">
 
 ### IMDSv2 Validation
 
-![](/screenshots/15-5-imdsv2_validation.png)
+<img src="/screenshots/15-5-imdsv2_validation.png" width="600">
 
 ### Golden AMI Creation
 
-![](/screenshots/15-6-click-action-for-create-ami.png)
+<img src="/screenshots/15-6-click-action-for-create-ami.png" width="600">
 
-![](/screenshots/15-7-golden_ami_v2_create.png)
+<img src="/screenshots/15-7-golden_ami_v2_create.png" width="600">
 
-![](/screenshots/15-8-golden_ami_v2_available.png)
+<img src="/screenshots/15-8-golden_ami_v2_available.png" width="600">
 
 ### Golden AMI Test
 
-![](/screenshots/15-10-golden_ami_validation_test_ec2.png)
+<img src="/screenshots/15-10-golden_ami_validation_test_ec2.png" width="600">
 
 ---
 
@@ -613,61 +613,61 @@ All Day screenshots are stored under:
 
 ### Image Builder Components
 
-![](/screenshots/16-1-ec2-→-image-builder-→-components.png)
+<img src="/screenshots/16-1-ec2-→-image-builder-→-components.png" width="600">
 
-![](/screenshots/16-2-components-ec2-image-builder.png)
+<img src="/screenshots/16-2-components-ec2-image-builder.png" width="600">
 
-![](/screenshots/16-3-create-component-ec2-image-builder.png)
+<img src="/screenshots/16-3-create-component-ec2-image-builder.png" width="600">
 
-![](/screenshots/16-4-create-component-ec2-image-builder.png)
+<img src="/screenshots/16-4-create-component-ec2-image-builder.png" width="600">
 
-![](/screenshots/16-5-image_builder_components.png)
+<img src="/screenshots/16-5-image_builder_components.png" width="600">
 
 ### Image Recipe
 
-![](/screenshots/17-1-create-image-recipe.png)
+<img src="/screenshots/17-1-create-image-recipe.png" width="600">
 
-![](/screenshots/17-2-adding-components.png)
+<img src="/screenshots/17-2-adding-components.png" width="600">
 
-![](/screenshots/17-3-created-image-recipe.png)
+<img src="/screenshots/17-3-created-image-recipe.png" width="600">
 
 ### Infrastructure Configuration
 
-![](/screenshots/18-1-infrastructure-configurations.png)
+<img src="./screenshots/18-1-infrastructure-configurations.png" width="600">
 
-![](/screenshots/18-2-creating-cloudadhar-role-image-builder.png)
+<img src="./screenshots/18-2-creating-cloudadhar-role-image-builder.png" width="600">
 
-![](/screenshots/18-3-created-cloudadhar-role-image-builder.png)
+<img src="./screenshots/18-3-created-cloudadhar-role-image-builder.png" width="600">
 
-![](/screenshots/18-4-cloudadhar-sg-image-builder.png)
+<img src="/screenshots/18-4-cloudadhar-sg-image-builder.png" width="600">
 
-![](/screenshots/18-4-created-cloudadhar-sg-image-builder.png)
+<img src="/screenshots/18-4-created-cloudadhar-sg-image-builder.png" width="600">
 
-![](/screenshots/18-5-creating-infrastructure-configuration-ec2-image-builder.png)
+<img src="/screenshots/18-5-creating-infrastructure-configuration-ec2-image-builder.png" width="600">
 
-![](/screenshots/18-6-created-infrastructure-configuration-ec2-image-builder.png)
+<img src="/screenshots/18-6-created-infrastructure-configuration-ec2-image-builder.png" width="600">
 
 ### Distribution Configuration
 
-![](/screenshots/19-1-click-distribution-settings.png)
+<img src="/screenshots/19-1-click-distribution-settings.png" width="600">
 
-![](/screenshots/19-2-distribution-settings-creating.png)
+<img src="/screenshots/19-2-distribution-settings-creating.png" width="600">
 
-![](/screenshots/19-3-distribution-settings-created.png)
+<img src="/screenshots/19-3-distribution-settings-created.png" width="600">
 
 ### Image Pipeline
 
-![](/screenshots/20-1-create-pipeline.png)
+<img src="/screenshots/20-1-create-pipeline.png" width="600">
 
-![](/screenshots/20-2-create-pipeline-ec2-image-builder.png)
+<img src="/screenshots/20-2-create-pipeline-ec2-image-builder.png" width="600">
 
-![](/screenshots/20-3-created-pipeline.png)
+<img src="/screenshots/20-3-created-pipeline.png" width="600">
 
 ### Pipeline Execution
 
-![](/screenshots/21-1-run-pipeline.png)
+<img src="/screenshots/21-1-run-pipeline.png" width="600">
 
-![](/screenshots/21-2-success-pipeline.png)
+<img src="/screenshots/21-2-success-pipeline.png" width="600">
 
 ---
 
@@ -681,8 +681,8 @@ submissions/malathi/day7-ec2/diagrams/
 
 Files:
 
-![](/diagrams/manual_ami_creation_architecture-page.gif)
-![](/diagrams/ec2-image-builder-architecture.gif)
+<img src="/diagrams/manual_ami_creation_architecture-page.gif" width="600">
+<img src="/diagrams/ec2-image-builder-architecture.gif" width="600">
 
 These diagrams represent the two Day 7 approaches:
 
