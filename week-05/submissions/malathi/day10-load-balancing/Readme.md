@@ -65,6 +65,13 @@ The same EC2 instances were subsequently registered with a separate TCP target g
 | Region   | `us-west-2`            |
 | CIDR     | `10.10.0.0/16`         |
 
+### Subnets
+
+| Availability Zone | Subnet Type | CIDR |
+|---|---|---|
+| us-west-2a | Public | `10.10.0.0/20` |
+| us-west-2b | Public | `10.10.16.0/20` |
+
 ---
 
 ## EC2 Instances
@@ -485,11 +492,13 @@ Weighted forwarding allows traffic to be gradually shifted between application v
 Example:
 
 ```text
-Blue  → 80%
-Green → 20%
+Blue  → 50%
+Green → 50%
 ```
 
 This can be used for controlled releases and canary deployments.
+
+> In this lab, the /canary rule was configured with 50% traffic to Blue and 50% traffic to Green.
 
 ---
 
@@ -556,8 +565,6 @@ The cleanup included:
 * Deleting the ALB security group
 * Deleting the NLB security group
 * Deleting the web security group
-* Deleting the NAT Gateway
-* Releasing the associated Elastic IP
 * Detaching and deleting the Internet Gateway
 * Deleting the route tables
 * Deleting the subnets
@@ -605,8 +612,8 @@ Blue/Green application routing
 NLB
 Layer 4
 Connection-aware
-TCP load balancing
-Very high-performance network traffic
+TCP connection load balancing
+Low-latency network traffic
         |
         v
     TCP services
