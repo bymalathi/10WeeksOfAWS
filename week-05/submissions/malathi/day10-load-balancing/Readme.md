@@ -33,49 +33,8 @@ Malathi Shetty
 
 # Architecture
 
-```text
-                         Internet
-                            |
-                            |
-                    +----------------+
-                    |      ALB       |
-                    |  Layer 7      |
-                    |    HTTP :80   |
-                    +----------------+
-                       /     |      \
-                      /      |       \
-                  /blue   /green   /canary
-                    |        |       |
-                    v        v       v
-                 +------+ +------+ +----------------+
-                 | Blue | | Green| | Weighted       |
-                 |  TG  | |  TG  | | Blue / Green   |
-                 +------+ +------+ +----------------+
-                    |        |
-                    v        v
-               +---------+  +---------+
-               | Blue EC2|  |Green EC2 |
-               | NGINX   |  | NGINX    |
-               +---------+  +---------+
-                    \          /
-                     \        /
-                      \      /
-                       \    /
-                    +-----------+
-                    |    NLB    |
-                    | Layer 4   |
-                    | TCP :80   |
-                    +-----------+
-                          |
-                    +-----------+
-                    | TCP Target|
-                    |   Group   |
-                    +-----------+
-                       /     \
-                      /       \
-                     v         v
-                Blue EC2   Green EC2
-```
+<img width="2442" height="1952" alt="image" src="https://github.com/user-attachments/assets/e1b516ca-23dd-48d3-b400-352cb5b1847e" />
+
 
 ---
 
